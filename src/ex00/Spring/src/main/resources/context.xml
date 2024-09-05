@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+  <bean id="preProcessorLower" class="edu.school21.beans.processor.PreProcessorToLower"/>
+  <bean id="preProcessorUpper" class="edu.school21.beans.processor.PreProcessorToUpperImpl"/>
+
+
+
+  <bean id="renderWithErrLower" class="edu.school21.beans.render.RendererErrImpl">
+    <constructor-arg ref="preProcessorLower"/>
+  </bean>
+  <bean id="renderWithErrUpper" class="edu.school21.beans.render.RendererErrImpl">
+    <constructor-arg ref="preProcessorUpper"/>
+  </bean>
+  <bean id="renderStandardLower" class="edu.school21.beans.render.RendererStandardImpl">
+  <constructor-arg ref="preProcessorLower"/>
+  </bean>
+  <bean id="renderStandardUpper" class="edu.school21.beans.render.RendererStandardImpl">
+    <constructor-arg ref="preProcessorUpper"/>
+  </bean>
+
+
+
+
+  <bean id="printerWithErrLowerPrefix" class="edu.school21.beans.printer.PrinterWithPrefixImpl">
+    <constructor-arg ref="renderWithErrLower"/>
+  </bean>
+  <bean id="printerWithErrUpperPrefix" class="edu.school21.beans.printer.PrinterWithPrefixImpl">
+    <constructor-arg ref="renderWithErrUpper"/>
+  </bean>
+  <bean id="printerStandardLowerPrefix" class="edu.school21.beans.printer.PrinterWithPrefixImpl">
+    <constructor-arg ref="renderStandardLower"/>
+  </bean>
+  <bean id="printerStandardUpperPrefix" class="edu.school21.beans.printer.PrinterWithPrefixImpl">
+    <constructor-arg ref="renderStandardUpper"/>
+  </bean>
+
+
+
+  <bean id="printerWithErrLowerDate" class="edu.school21.beans.printer.PrinterWithDateTimeImpl">
+    <constructor-arg ref="renderWithErrLower"/>
+  </bean>
+  <bean id="printerWithErrUpperDate" class="edu.school21.beans.printer.PrinterWithDateTimeImpl">
+    <constructor-arg ref="renderWithErrUpper"/>
+  </bean>
+  <bean id="printerStandardLowerDate" class="edu.school21.beans.printer.PrinterWithDateTimeImpl">
+    <constructor-arg ref="renderStandardLower"/>
+  </bean>
+  <bean id="printerStandardUpperDate" class="edu.school21.beans.printer.PrinterWithDateTimeImpl">
+    <constructor-arg ref="renderStandardUpper"/>
+  </bean>
+
+</beans>
